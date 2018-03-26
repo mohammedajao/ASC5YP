@@ -21,7 +21,7 @@
          <li class="nav-item"><a href="#" class="nav-link">About</a></li>
          <li class="nav-item"><a href="#" class="nav-link">Documentation</a></li>
          <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-         <li class="nav-item"><a href="#" class="nav-link">Miscellaneous</a></li>
+         <li class="nav-item"><a href="#" class="nav-link">Register</a></li>
      </ul>
      <nav id="slide-menu" class="slide-menu d-lg-none" role="navigation">
          <div class="brand">
