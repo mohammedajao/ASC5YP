@@ -8,6 +8,7 @@
 <script>
 import navbar from './components/Header.vue'
 
+
 export default {
   name: 'App',
   components: {

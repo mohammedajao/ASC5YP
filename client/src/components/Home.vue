@@ -5,10 +5,10 @@
       <div class="callout rule">
         <span class="text">See What's New!</span>
       </div>
-      <div class="login-section">
-        <input id="login-email" type="email" placeholder="USERNAME" spellcheck="false"><br>
-        <input id="login-password" type="password" placeholder="PASSWORD" spellcheck="false"><br>
-        <div class="btn-login">Authenticate</div>
+      <div v-if="currentUser === null" class="login-section">
+        <input id="login-email" v-model="email" type="email" placeholder="EMAIL ADDRESS" spellcheck="false"><br>
+        <input id="login-password" v-model="password" type="password" placeholder="PASSWORD" spellcheck="false"><br>
+        <div @click="login()" class="btn-login">Authenticate</div>
       </div>
     </div>
   </div>
@@ -16,10 +16,58 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    login () {
+      // Login functionality and incorrect login information notification
+      this.$store.dispatch('loginUser', {email: this.email, password: this.password})
+      switch(this.$store.getters.loginError) {
+        case "auth/invalid-email":
+          this.warn('Invalid email address')
+          break;
+        case 'auth/user-not-found':
+          this.warn('That email address is not registered')
+          break;
+        case 'auth/wrong-password':
+          this.warn('Incorrect password')
+          break;
+        default: 
+          break;
+      }
+    },
+    warn(str) {
+      console.log(str)
+      $.notify(
+        {
+          title: "「WARNING」	",
+          icon: "fa fa-warning",
+          message: str
+        },
+        {
+          type: "danger",
+          animate: {
+            enter: "animated fadeInDown",
+            exit: "animated fadeOutDown"
+          },
+          placement: {
+            from: "bottom",
+            align: "left"
+          },
+          offset: 2,
+          spacing: 10,
+          z_index: 1031
+        }
+      )
+    }
+  },
+  computed: {
+    currentUser () {
+      return this.$store.getters.currentUserData
     }
   }
 }

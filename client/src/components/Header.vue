@@ -1,9 +1,9 @@
 <template>
   <nav class="main nav navbar navbar-expand-lg">
-     <a href="" class="brand nav-block navbar-brand">
+     <router-link to="/" class="brand nav-block navbar-brand">
         <img width="40px" height="40px" style="margin-top: 20px; margin-right: 5px;" src="../assets/t4hlogo.png" />
-        <span class="d-none d-md-block">T4H</span>
-     </a>
+        <span class="d-none d-md-block">Teens4Hire</span>
+     </router-link>
      <div class="search nav-block">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="#A1A1A1" d="M5.8 11.7c-1.6 0-3-.6-4.1-1.7S0 7.4 0 5.8s.6-3 1.7-4.1C2.8.6 4.3 0 5.8 0s3 .6 4.1 1.7c2.3 2.3 2.3 6 0 8.3-1 1.1-2.5 1.7-4.1 1.7zM5.8 1c-1.3 0-2.5.5-3.4 1.4C1.5 3.3 1 4.5 1 5.8s.5 2.5 1.4 3.4c.9.9 2.1 1.4 3.4 1.4s2.5-.5 3.4-1.4c1.9-1.9 1.9-5 0-6.9C8.4 1.5 7.1 1 5.8 1z"></path><path fill="#A1A1A1" d="M15.5 16c-.1 0-.3 0-.3-.1L9.3 10c-.2-.2-.2-.5 0-.7s.5-.2.7 0l5.9 5.9c.2.2.2.5 0 .7-.1.1-.3.1-.4.1z"></path>
             <path fill="#A1A1A1" d="M5.8 11.7c-1.6 0-3-.6-4.1-1.7S0 7.4 0 5.8s.6-3 1.7-4.1C2.8.6 4.3 0 5.8 0s3 .6 4.1 1.7c2.3 2.3 2.3 6 0 8.3-1 1.1-2.5 1.7-4.1 1.7zM5.8 1c-1.3 0-2.5.5-3.4 1.4C1.5 3.3 1 4.5 1 5.8s.5 2.5 1.4 3.4c.9.9 2.1 1.4 3.4 1.4s2.5-.5 3.4-1.4c1.9-1.9 1.9-5 0-6.9C8.4 1.5 7.1 1 5.8 1z"></path>
@@ -16,25 +16,30 @@
          <a href="#" class="toggle-slide menu-link btn">☰</a>
         </div>
      </div>
-     <ul class="d-none d-lg-block main-nav navbar-nav">
-         <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+     <ul v-if="currentUser === null" class="d-none d-lg-block main-nav navbar-nav">
+         <li v-for="item in guestMenuItems" :key="item.title" class="nav-item"><router-link :to="item.path" class="nav-link"><i v-if="item.icon" :class="item.icon"></i>&nbsp;{{ item.title }}</router-link></li>
+         <!-- <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
          <li class="nav-item"><a href="#" class="nav-link">About</a></li>
          <li class="nav-item"><a href="#" class="nav-link">Documentation</a></li>
          <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-         <li class="nav-item"><a href="#" class="nav-link">Register</a></li>
+         <li class="nav-item"><a href="#" class="nav-link">Register</a></li> -->
      </ul>
+     <ul v-if="currentUser !== null" class="d-none d-lg-block main-nav navbar-nav">
+         <li class="nav-item"><router-link  to="/" class="nav-link">Home</router-link></li>
+         <li class="nav-item"><a to="#" @click="signOut()" class="nav-link"><i  class="fa fa-sign-out">Logout</i></a></li>
+     </ul>
+     <!-- Slide Menu -->
      <nav id="slide-menu" class="slide-menu d-lg-none" role="navigation">
          <div class="brand">
-             <a href="/"></a>
              <img width="80px" height="80px" src="../assets/t4hlogo.png" />
              <span><span @click="hideSideMenu()" id="slide-menu-exit" style="float: right"><strong>X</strong></span></span>
          </div>
-         <ul class="slide-main-nav nav">
-            <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Documentation</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Miscellaneous</a></li>
+         <ul v-if="currentUser === null" class="slide-main-nav nav">
+            <li v-for="item in guestMenuItems" :key="item.title" class="nav-item"><router-link :to="item.path" class="nav-link">{{ item.title }}</router-link></li>
+         </ul>
+         <ul v-if="currentUser !== null" class="slide-main-nav nav">
+            <li class="nav-item"><router-link  to="/" class="nav-link">Home</router-link></li>
+         <li class="nav-item"><a to="#" @click="signOut()" class="nav-link"><i  class="fa fa-sign-out">Logout</i></a></li>
          </ul>
      </nav>
   </nav>
@@ -44,7 +49,12 @@
 
 export default {
     data () {
-        return {}
+        return {
+            guestMenuItems: [
+                {title: 'Home', path: '/'},
+                {title: 'Register', path: '/register', icon: 'fa fa-sign-in'}
+            ]
+        }
     },
     methods: {
         revealSideMenu: function () {
@@ -52,7 +62,19 @@ export default {
         },
         hideSideMenu: function () {
             $("#app").css("transform", "translate3d(0px, 0px, 0px)") 
+        },
+        signOut: function () {
+            this.$store.dispatch('signUserOut')
+            this.$router.push('/')
         }
+    },
+    computed: {
+        currentUser () {
+            return this.$store.getters.currentUserData
+        }
+    },
+    created () {
+        console.log(this.currentUser)
     }
 }
 </script>
