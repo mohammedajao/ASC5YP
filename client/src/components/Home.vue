@@ -25,20 +25,23 @@ export default {
   methods: {
     login () {
       // Login functionality and incorrect login information notification
-      this.$store.dispatch('loginUser', {email: this.email, password: this.password})
-      switch(this.$store.getters.loginError) {
-        case "auth/invalid-email":
-          this.warn('Invalid email address')
-          break;
-        case 'auth/user-not-found':
-          this.warn('That email address is not registered')
-          break;
-        case 'auth/wrong-password':
-          this.warn('Incorrect password')
-          break;
-        default: 
-          break;
-      }
+      this.$store.dispatch('loginUser', {email: this.email, password: this.password}).then(response => {
+        console.log("Logged in")
+      }, error => {
+        switch(this.$store.getters.loginError) {
+          case "auth/invalid-email":
+            this.warn('Invalid email address')
+            break;
+          case 'auth/user-not-found':
+            this.warn('That email address is not registered')
+            break;
+          case 'auth/wrong-password':
+            this.warn('Incorrect password')
+            break;
+          default: 
+            break;
+        }
+      })
     },
     warn(str) {
       console.log(str)

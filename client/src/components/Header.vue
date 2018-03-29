@@ -26,7 +26,9 @@
      </ul>
      <ul v-if="currentUser !== null" class="d-none d-lg-block main-nav navbar-nav">
          <li class="nav-item"><router-link  to="/" class="nav-link">Home</router-link></li>
-         <li class="nav-item"><a to="#" @click="signOut()" class="nav-link"><i  class="fa fa-sign-out">Logout</i></a></li>
+         <li class="nav-item"><router-link to="/" class="nav-link">News</router-link></li>
+         <li class="nav-item"><router-link to="/" class="nav-link"><i class="fa fa-user"></i>&nbsp;Profile</router-link></li>
+         <li class="nav-item"><router-link to="/" @click="signOut()" class="nav-link"><i  class="fa fa-sign-out"></i>&nbsp;Logout</router-link></li>
      </ul>
      <!-- Slide Menu -->
      <nav id="slide-menu" class="slide-menu d-lg-none" role="navigation">
@@ -38,8 +40,10 @@
             <li v-for="item in guestMenuItems" :key="item.title" class="nav-item"><router-link :to="item.path" class="nav-link">{{ item.title }}</router-link></li>
          </ul>
          <ul v-if="currentUser !== null" class="slide-main-nav nav">
-            <li class="nav-item"><router-link  to="/" class="nav-link">Home</router-link></li>
-         <li class="nav-item"><a to="#" @click="signOut()" class="nav-link"><i  class="fa fa-sign-out">Logout</i></a></li>
+            <li class="nav-item"><router-link to="/" class="nav-link">Home</router-link></li>
+            <li class="nav-item"><router-link to="/" class="nav-link">News</router-link></li>
+            <li class="nav-item"><router-link to="/" class="nav-link"><i class="fa fa-user"></i>Profile</router-link></li>
+            <li class="nav-item"><router-link to="/" @click="signOut()" class="nav-link"><i  class="fa fa-sign-out"></i>&nbsp;Logout</router-link></li>
          </ul>
      </nav>
   </nav>
@@ -52,6 +56,8 @@ export default {
         return {
             guestMenuItems: [
                 {title: 'Home', path: '/'},
+                {title: 'Mission', path: '/'},
+                {title: 'Contact', path: '/'},
                 {title: 'Register', path: '/register', icon: 'fa fa-sign-in'}
             ]
         }
@@ -86,6 +92,7 @@ nav.main {
     padding: 0;
     height: 80px;
     width: 100%;
+    border-top: 1px solid #dee0df;
 }
 
 nav.main a.brand {
@@ -134,7 +141,7 @@ nav.main .search .typehead input {
 
 nav.main .search .typehead input {
     text-transform: none;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 nav.main .search .typehead input:focus {
@@ -194,9 +201,11 @@ nav.main .btn {
 
 #slide-menu {
     top: 0px;
-    left: -70%; width: 70%;
-    height: 1000px;
-    position: absolute;
+    bottom: 0px;
+    left: -70%; 
+    width: 70%;
+    height: 300%;
+    position: fixed;
     z-index: 888888;
     overflow: hidden;
     backface-visibility: hidden;
