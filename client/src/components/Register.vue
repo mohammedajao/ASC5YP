@@ -28,8 +28,7 @@ export default {
       confirmPassword: "",
       emailWarning: false,
       passWarning: false,
-      passWarningText:
-        "Password must have at least one number, one lowercase letter, one uppercase letter, and 8 characters",
+      passWarningText: "Password must have at least one number, one lowercase letter, one uppercase letter, and 8 characters",
       emailWarningText: "Please enter an appropiate email address"
     };
   },
@@ -51,10 +50,8 @@ export default {
           password: this.password
         });
       }
-      this.passWarning =
-        this.checkPassword(this.password) === this.password ? false : true;
-      this.emailWarning =
-        this.checkEmailUsername(this.username) === this.username ? false : true;
+      this.passWarning = this.checkPassword(this.password) === this.password ? false : true;
+      this.emailWarning = this.checkEmailUsername(this.username) === this.username ? false : true;
       this.notify();
     },
     checkPassword(str) {
