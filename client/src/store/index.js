@@ -68,7 +68,8 @@ export const store = new Vuex.Store({
           }
         )
     },
-    signUserOut ({ commit }, payload) {
+    signUserOut ({ commit }) {
+      console.log("Signing out")
       firebase.auth().signOut()
       commit('setUser', null)
     }

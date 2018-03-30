@@ -10,7 +10,7 @@
             <path fill="#A1A1A1" d="M15.5 16c-.1 0-.3 0-.3-.1L9.3 10c-.2-.2-.2-.5 0-.7s.5-.2.7 0l5.9 5.9c.2.2.2.5 0 .7-.1.1-.3.1-.4.1z"></path>
         </svg>
         <span class="typehead">
-            <input type="text" id="search-input" placeholder="SEARCH" autocomplete="off" spellcheck="false" dir="auto">
+            <input @keyup.enter="initiateSearch()" type="text" id="search-input" placeholder="SEARCH" autocomplete="off" spellcheck="false" dir="auto">
         </span>
         <div @click="revealSideMenu()" class="d-lg-none responsive-sidebar-nav">
          <a href="#" class="toggle-slide menu-link btn">☰</a>
@@ -28,7 +28,7 @@
          <li class="nav-item"><router-link  to="/" class="nav-link">Home</router-link></li>
          <li class="nav-item"><router-link to="/" class="nav-link">News</router-link></li>
          <li class="nav-item"><router-link to="/" class="nav-link"><i class="fa fa-user"></i>&nbsp;Profile</router-link></li>
-         <li class="nav-item"><router-link to="/" @click="signOut()" class="nav-link"><i  class="fa fa-sign-out"></i>&nbsp;Logout</router-link></li>
+         <li @click="signOut()" class="nav-item"><router-link to="/"  class="nav-link"><i  class="fa fa-sign-out"></i>&nbsp;Logout</router-link></li>
      </ul>
      <!-- Slide Menu -->
      <nav id="slide-menu" class="slide-menu d-lg-none" role="navigation">
@@ -42,8 +42,8 @@
          <ul v-if="currentUser !== null" class="slide-main-nav nav">
             <li class="nav-item"><router-link to="/" class="nav-link">Home</router-link></li>
             <li class="nav-item"><router-link to="/" class="nav-link">News</router-link></li>
-            <li class="nav-item"><router-link to="/" class="nav-link"><i class="fa fa-user"></i>Profile</router-link></li>
-            <li class="nav-item"><router-link to="/" @click="signOut()" class="nav-link"><i  class="fa fa-sign-out"></i>&nbsp;Logout</router-link></li>
+            <li class="nav-item"><router-link to="/" class="nav-link"><i class="fa fa-user"></i>&nbsp;Profile</router-link></li>
+            <li @click="signOut()" class="nav-item"><router-link to="/" class="nav-link"><i  class="fa fa-sign-out"></i>&nbsp;Logout</router-link></li>
          </ul>
      </nav>
   </nav>
@@ -70,8 +70,13 @@ export default {
             $("#app").css("transform", "translate3d(0px, 0px, 0px)") 
         },
         signOut: function () {
+            console.log("called sign out")
             this.$store.dispatch('signUserOut')
             this.$router.push('/')
+        },
+        initiateSearch () {
+            console.log("Searching")
+            this.$router.push("/search")
         }
     },
     computed: {
@@ -93,6 +98,7 @@ nav.main {
     height: 80px;
     width: 100%;
     border-top: 1px solid #dee0df;
+    box-shadow: 1px 0 2px 2px rgba(42,42,42,.25);
 }
 
 nav.main a.brand {
@@ -110,6 +116,7 @@ nav.main .search {
     align-items: center;
     padding: 0 30px;
     border-right: 1px solid #dee0df;
+    height: 100%;
 }
 
 nav.main .nav-block {
@@ -221,6 +228,7 @@ nav.main .btn {
 
 #slide-menu .slide-main-nav>li>a {
     float: left;
+    font-family: "Roboto";
 }
 
 .slide-menu .brand {
