@@ -10,7 +10,7 @@
             <path fill="#A1A1A1" d="M15.5 16c-.1 0-.3 0-.3-.1L9.3 10c-.2-.2-.2-.5 0-.7s.5-.2.7 0l5.9 5.9c.2.2.2.5 0 .7-.1.1-.3.1-.4.1z"></path>
         </svg>
         <span class="typehead">
-            <input @keyup.enter="initiateSearch()" type="text" id="search-input" placeholder="SEARCH" autocomplete="off" spellcheck="false" dir="auto">
+            <input @keyup.enter="initiateSearch()" v-model="searchInput" type="text" id="search-input" placeholder="SEARCH" autocomplete="off" spellcheck="false" dir="auto">
         </span>
         <div @click="revealSideMenu()" class="d-lg-none responsive-sidebar-nav">
          <a href="#" class="toggle-slide menu-link btn">☰</a>
@@ -54,6 +54,7 @@
 export default {
     data () {
         return {
+            searchInput: '',
             guestMenuItems: [
                 {title: 'Home', path: '/'},
                 {title: 'Mission', path: '/'},
@@ -75,8 +76,7 @@ export default {
             this.$router.push('/')
         },
         initiateSearch () {
-            console.log("Searching")
-            this.$router.push("/search")
+            this.$router.push("/search/" + this.searchInput)
         }
     },
     computed: {

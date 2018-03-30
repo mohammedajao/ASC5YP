@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div v-if="currentUser === null" class="home">
     <div class="main">
       <img height="auto" style="margin-top: 50px;" class="main-thumbnail" src="../assets/t4hlogo.png" />
       <div class="callout rule">
@@ -30,7 +30,7 @@ export default {
       passWarning: false,
       passWarningText: "Password must have at least one number, one lowercase letter, one uppercase letter, and 8 characters",
       emailWarningText: "Please enter an appropiate email address"
-    };
+    }
   },
   methods: {
     registerUser() {
@@ -38,7 +38,7 @@ export default {
         email: this.username,
         pass: this.password,
         confirmPass: this.confirmPassword
-      });
+      })
       //  Check input
       if (
         this.checkPassword(this.password) === this.password &&
@@ -48,35 +48,36 @@ export default {
         this.$store.dispatch("registerUserWithEmailAndPassword", {
           email: this.username,
           password: this.password
-        });
+        })
+        this.$router.push('/')
       }
-      this.passWarning = this.checkPassword(this.password) === this.password ? false : true;
-      this.emailWarning = this.checkEmailUsername(this.username) === this.username ? false : true;
-      this.notify();
+      this.passWarning = this.checkPassword(this.password) === this.password ? false : true
+      this.emailWarning = this.checkEmailUsername(this.username) === this.username ? false : true
+      this.notify()
     },
     checkPassword(str) {
       // at least one number, one lowercase and one uppercase letter
       // at least 8 characters
-      let _$ = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
-      return _$.test(str) ? str : null;
+      let _$ = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/
+      return _$.test(str) ? str : null
     },
     checkEmailUsername(str) {
-      let _$ = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-      return _$.test(str) ? str : null;
+      let _$ = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+      return _$.test(str) ? str : null
     },
     checkUsername(str) {
-      let _$ = /[^\w\s]/gi;
+      let _$ = /[^\w\s]/gi
       if (_$.test(str) === true) {
-        return false;
+        return false
       }
-      return true;
+      return true
     },
     notify() {
       if (this.passWarning) {
-        this.warn(this.passWarningText);
+        this.warn(this.passWarningText)
       }
       if (this.emailWarning) {
-        this.warn(this.emailWarningText);
+        this.warn(this.emailWarningText)
       }
     },
     warn(str) {
@@ -101,6 +102,11 @@ export default {
           z_index: 1031
         }
       )
+    }
+  },
+  computed: {
+    currentUser () {
+      return this.$store.getters.currentUserData
     }
   }
 }

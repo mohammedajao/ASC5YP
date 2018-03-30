@@ -22,54 +22,44 @@ export const store = new Vuex.Store({
   },
   actions: {
     registerUserWithEmailAndPassword ({ commit }, payload) {
-      firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(payload.email, payload.password)
+      firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
         .then(
           user => {
-            const newUser = {
+            let newUser = {
               id: user.uid,
-              jobRegistrations: []
+              email: user.email,
+              displayName: ('User' + user.uid).toLowerCase(),
+              photoURL: 'https://steamuserimages-a.akamaihd.net/ugc/619591538955923282/66905870D1AA32596AA0C51777FE6676D389A752/'
             }
+            firebase.database().ref('users/' + user.uid).set(newUser)
             commit('setUser', newUser)
           }
         )
         .catch(
           error => {
-            return error
+            console.log(error)
           }
         )
     },
     loginUser ({ commit }, payload) {
       return new Promise((resolve, reject) => {
         firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
-        .then(
-          user => {
-            commit('setUser', user)
-            resolve(user)
-          }
-        )
-        .catch(
-          error => { 
-            console.log(error)
-            commit('setLoginError', error.code)
-            reject(error)
-          }
-        )
+          .then(
+            user => {
+              commit('setUser', user)
+              resolve(user)
+            }
+          )
+          .catch(
+            error => {
+              console.log(error)
+              commit('setLoginError', error.code)
+              reject(error)
+            }
+          )
       })
-      firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
-        .then(
-          user => {
-            commit('setUser', user)
-          }
-        )
-        .catch(
-          error => { 
-            console.log(error)
-            commit('setLoginError', error.code)
-          }
-        )
     },
     signUserOut ({ commit }) {
-      console.log("Signing out")
       firebase.auth().signOut()
       commit('setUser', null)
     }
@@ -85,6 +75,23 @@ export const store = new Vuex.Store({
     },
     loginError (state) {
       return state.loginError
+    },
+    fetchUser (state) {
+      return (uid) => {
+        return firebase.database().ref('users/' + uid).once('value').then(snapshot => {
+          return snapshot
+        })
+      }
+    },
+    fetchUserList (state) {
+      // Payload is query text
+      return (payload) => {
+        console.log(payload + ' is our query')
+        firebase.database().ref('users').orderByChild('displayName').startAt(payload.toLowerCase()).endAt(payload.toLowerCase() + '\uf8ff').on('value', snapshot => {
+          console.log(snapshot.val())
+          return snapshot.val()
+        })
+      }
     }
   }
 })

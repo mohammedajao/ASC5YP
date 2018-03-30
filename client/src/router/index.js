@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Register from '@/components/Register'
 import Search from '@/components/search/Search'
+import Profile from '@/components/user/Profile'
 
 Vue.use(Router)
 
@@ -19,9 +20,16 @@ export default new Router({
       component: Register
     },
     {
-      path: '/search',
-      name: 'Search', 
+      path: '/search/:query?',
+      name: 'Search',
+      props: true,
       component: Search
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      props: true,
+      componenet: Profile
     }
   ],
   mode: 'history'
