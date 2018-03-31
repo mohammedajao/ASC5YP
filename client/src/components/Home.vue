@@ -20,55 +20,55 @@ export default {
     return {
       email: '',
       password: '',
-      authLoading: false,
+      authLoading: false
     }
   },
   methods: {
     login () {
       // Login functionality and incorrect login information notification
-      if(!this.authLoading){
+      if (!this.authLoading) {
         this.authLoading = true
         console.log(this.authLoading)
-        $(".btn-login").text("Loading...")
+        $('.btn-login').text('Loading...')
         this.$store.dispatch('loginUser', {email: this.email, password: this.password}).then(response => {
-          console.log("Logged in")
-        }, error => {
-          switch(this.$store.getters.loginError) {
-            case "auth/invalid-email":
+          console.log('Logged in')
+        }, (error) => {
+          switch (this.$store.getters.loginError) {
+            case 'auth/invalid-email':
               this.warn('Invalid email address')
-              break;
+              break
             case 'auth/user-not-found':
               this.warn('That email address is not registered')
-              break;
+              break
             case 'auth/wrong-password':
               this.warn('Incorrect password')
-              break;
-            default: 
-              break;
+              break
+            default:
+              break
           }
         })
       }
       this.authLoading = false
-      $(".btn-login").text("Authenticate")
+      $('.btn-login').text('Authenticate')
       console.log(this.authLoading)
     },
-    warn(str) {
+    warn (str) {
       console.log(str)
       $.notify(
         {
-          title: "「WARNING」	",
-          icon: "fa fa-warning",
+          title: '「WARNING」',
+          icon: 'fa fa-warning',
           message: str
         },
         {
-          type: "danger",
+          type: 'danger',
           animate: {
-            enter: "animated fadeInDown",
-            exit: "animated fadeOutDown"
+            enter: 'animated fadeInDown',
+            exit: 'animated fadeOutDown'
           },
           placement: {
-            from: "bottom",
-            align: "left"
+            from: 'bottom',
+            align: 'left'
           },
           offset: 2,
           spacing: 10,

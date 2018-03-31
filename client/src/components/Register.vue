@@ -21,19 +21,19 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      username: "",
-      password: "",
-      confirmPassword: "",
+      username: '',
+      password: '',
+      confirmPassword: '',
       emailWarning: false,
       passWarning: false,
-      passWarningText: "Password must have at least one number, one lowercase letter, one uppercase letter, and 8 characters",
-      emailWarningText: "Please enter an appropiate email address"
+      passWarningText: 'Password must have at least one number, one lowercase letter, one uppercase letter, and 8 characters',
+      emailWarningText: 'Please enter an appropiate email address'
     }
   },
   methods: {
-    registerUser() {
+    registerUser () {
       console.log({
         email: this.username,
         pass: this.password,
@@ -45,34 +45,34 @@ export default {
         this.checkEmailUsername(this.username) === this.username &&
         this.password === this.confirmPassword
       ) {
-        this.$store.dispatch("registerUserWithEmailAndPassword", {
+        this.$store.dispatch('registerUserWithEmailAndPassword', {
           email: this.username,
           password: this.password
         })
         this.$router.push('/')
       }
-      this.passWarning = this.checkPassword(this.password) === this.password ? false : true
-      this.emailWarning = this.checkEmailUsername(this.username) === this.username ? false : true
+      this.passWarning = this.checkPassword(this.password) === this.password
+      this.emailWarning = this.checkEmailUsername(this.username) === this.username
       this.notify()
     },
-    checkPassword(str) {
+    checkPassword (str) {
       // at least one number, one lowercase and one uppercase letter
       // at least 8 characters
       let _$ = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/
       return _$.test(str) ? str : null
     },
-    checkEmailUsername(str) {
+    checkEmailUsername (str) {
       let _$ = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
       return _$.test(str) ? str : null
     },
-    checkUsername(str) {
+    checkUsername (str) {
       let _$ = /[^\w\s]/gi
       if (_$.test(str) === true) {
         return false
       }
       return true
     },
-    notify() {
+    notify () {
       if (this.passWarning) {
         this.warn(this.passWarningText)
       }
@@ -80,22 +80,22 @@ export default {
         this.warn(this.emailWarningText)
       }
     },
-    warn(str) {
+    warn (str) {
       $.notify(
         {
-          title: "「WARNING」	",
-          icon: "fa fa-warning",
+          title: '「WARNING」',
+          icon: 'fa fa-warning',
           message: str
         },
         {
-          type: "danger",
+          type: 'danger',
           animate: {
-            enter: "animated fadeInDown",
-            exit: "animated fadeOutDown"
+            enter: 'animated fadeInDown',
+            exit: 'animated fadeOutDown'
           },
           placement: {
-            from: "bottom",
-            align: "left"
+            from: 'bottom',
+            align: 'left'
           },
           offset: 2,
           spacing: 10,

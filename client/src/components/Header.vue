@@ -50,220 +50,218 @@
 </template>
 
 <script>
-
 export default {
-    data () {
-        return {
-            searchInput: '',
-            guestMenuItems: [
-                {title: 'Home', path: '/'},
-                {title: 'Mission', path: '/'},
-                {title: 'Contact', path: '/'},
-                {title: 'Register', path: '/register', icon: 'fa fa-sign-in'}
-            ]
-        }
-    },
-    methods: {
-        revealSideMenu: function () {
-            $("#app").css("transform", "translate3d(70%, 0px, 0px)") 
-        },
-        hideSideMenu: function () {
-            $("#app").css("transform", "translate3d(0px, 0px, 0px)") 
-        },
-        signOut: function () {
-            console.log("called sign out")
-            this.$store.dispatch('signUserOut')
-            this.$router.push('/')
-        },
-        initiateSearch () {
-            this.$router.push("/search/" + this.searchInput)
-        }
-    },
-    computed: {
-        currentUser () {
-            return this.$store.getters.currentUserData
-        }
-    },
-    created () {
-        console.log(this.currentUser)
+  data () {
+    return {
+      searchInput: '',
+      guestMenuItems: [
+        { title: 'Home', path: '/' },
+        { title: 'Mission', path: '/' },
+        { title: 'Contact', path: '/' },
+        { title: 'Register', path: '/register', icon: 'fa fa-sign-in' }
+      ]
     }
+  },
+  methods: {
+    revealSideMenu: function () {
+      $('#app').css('transform', 'translate3d(70%, 0px, 0px)')
+    },
+    hideSideMenu: function () {
+      $('#app').css('transform', 'translate3d(0px, 0px, 0px)')
+    },
+    signOut: function () {
+      console.log('called sign out')
+      this.$store.dispatch('signUserOut')
+      this.$router.push('/')
+    },
+    initiateSearch () {
+      this.$router.push('/search/' + this.searchInput)
+    }
+  },
+  computed: {
+    currentUser () {
+      return this.$store.getters.currentUserData
+    }
+  }
 }
 </script>
 
 <style>
-
 nav.main {
-    border-bottom: 1px solid #dee0df;
-    padding: 0;
-    height: 80px;
-    width: 100%;
-    border-top: 1px solid #dee0df;
-    box-shadow: 1px 0 2px 2px rgba(42,42,42,.25);
+  position: relative;
+  border-bottom: 1px solid #dee0df;
+  background: white;
+  padding: 0;
+  height: 80px;
+  width: 100%;
+  border-top: 1px solid #dee0df;
+  box-shadow: 1px 0 2px 2px rgba(42, 42, 42, 0.25);
 }
 
 nav.main a.brand {
- border-right: 1px solid #dee0df;
- font-size: 18px;
- padding: 0 30px; 
- float: left;
- line-height: 80px;
- flex: 0;
- color: #f4645f;
- height: 100%;
+  border-right: 1px solid #dee0df;
+  font-size: 18px;
+  padding: 0 30px;
+  float: left;
+  line-height: 80px;
+  flex: 0;
+  color: #f4645f;
+  height: 100%;
 }
 
 nav.main .search {
-    align-items: center;
-    padding: 0 30px;
-    border-right: 1px solid #dee0df;
-    height: 100%;
+  align-items: center;
+  padding: 0 30px;
+  border-right: 1px solid #dee0df;
+  height: 100%;
 }
 
 nav.main .nav-block {
-    display: flex;
-    flex: 1;
+  display: flex;
+  flex: 1;
 }
 
 nav.main .search svg {
-    margin-right: 15px;
+  margin-right: 15px;
 }
 
 nav.main .search .typehead {
-    width: 100%;
-    height: 100%;
-    direction: ltr;
-    position: relative;
+  width: 100%;
+  height: 100%;
+  direction: ltr;
+  position: relative;
 }
 
 nav.main .search .typehead input {
-    border: none;
-    background: inherit;
-    width: 100%;
-    height: 100%;
-    vertical-align: top;
-    position: relative;
-    padding: 8px 12px;
-    font-family: "Miriam Libre";
+  border: none;
+  background: inherit;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  position: relative;
+  padding: 8px 12px;
+  font-family: "Miriam Libre";
 }
 
 nav.main .search .typehead input {
-    text-transform: none;
-    overflow-x: hidden;
+  text-transform: none;
+  overflow-x: hidden;
 }
 
 nav.main .search .typehead input:focus {
-    outline: none;
+  outline: none;
 }
 
 nav.main .search .typehead input::placeholder {
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 14px;
 }
 
 nav.main ul.main-nav {
-    display: inline-block;
+  display: inline-block;
 }
 
-nav.main ul.main-nav>li {
-    display: inline-block;
-    align-items: center;
-    margin: 0 15px;
-    transition: all .2s ease;
+nav.main ul.main-nav > li {
+  display: inline-block;
+  align-items: center;
+  margin: 0 15px;
+  transition: all 0.2s ease;
 }
 
-nav.main ul.main-nav>li>a {
-    display: inline-block;
-    font-size: 15px;
-    padding: 27px 10px;
-    border-bottom: 3px solid transparent;
-    transition: border .2s ease-out, color .2s ease-out;
-    background-color: transparent;
-    font-family: "Miriam Libre";
-    color: #525252;
+nav.main ul.main-nav > li > a {
+  display: inline-block;
+  font-size: 15px;
+  padding: 27px 10px;
+  border-bottom: 3px solid transparent;
+  transition: border 0.2s ease-out, color 0.2s ease-out;
+  background-color: transparent;
+  font-family: "Miriam Libre";
+  color: #525252;
 }
 
-nav.main ul.main-nav>li>a:hover {
-    color: #f4645f;
-    border-bottom: 3px solid #f4645f;
+nav.main ul.main-nav > li > a:hover {
+  color: #f4645f;
+  border-bottom: 3px solid #f4645f;
 }
 
 nav.main .responsive-sidebar-nav {
-    clear: both;
+  clear: both;
 }
 
 nav.main .btn {
-    border: none;
-    border-radius: 3px;
-    background: #f4645f;
-    padding: 10px 15px;
-    font-size: 16px;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    touch-action: manipulation;
-    color: white;
+  border: none;
+  border-radius: 3px;
+  background: #f4645f;
+  padding: 10px 15px;
+  font-size: 16px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  touch-action: manipulation;
+  color: white;
 }
 
 #slide-menu {
-    top: 0px;
-    bottom: 0px;
-    left: -70%; 
-    width: 70%;
-    height: 300%;
-    position: fixed;
-    z-index: 888888;
-    overflow: hidden;
-    backface-visibility: hidden;
-    display: block;
-    overflow: scroll;
-    font-family: "Open Sans";
+  top: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  margin: 0;
+  left: -70%;
+  width: 70%;
+  min-height: 100%;
+  position: fixed;
+  z-index: 888888;
+  overflow: hidden;
+  backface-visibility: hidden;
+  display: block;
+  overflow: scroll;
+  font-family: "Open Sans";
 }
 
 .slide-menu {
-    padding: 0 20px;
-    background-color: #f4645f;
+  padding: 0 20px;
+  background-color: #f4645f;
 }
 
-#slide-menu .slide-main-nav>li>a {
-    float: left;
-    font-family: "Roboto";
+#slide-menu .slide-main-nav > li > a {
+  float: left;
+  font-family: "Roboto";
 }
 
 .slide-menu .brand {
-    padding: 22px 0;
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, .25);
-    color: white;
+  padding: 22px 0;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
 }
 
 .slide-menu a {
-    line-height: 1.5;
+  line-height: 1.5;
 }
 
 .slide-menu .slide-main-nav {
-    padding: 25px 0;
-    margin: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, .25);
+  padding: 25px 0;
+  margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-.slide-menu .slide-main-nav>li {
-    width: 100%;
+.slide-menu .slide-main-nav > li {
+  width: 100%;
 }
 
 .slide-menu .slide-main-nav a {
-    font-weight: 700;
-    line-height: 1.5;
-    color: rgba(255,255,255,0.8);
+  font-weight: 700;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .slide-menu .slide-main-nav a:hover {
-    color: rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
 }
 
 .slide-menu #slide-menu-exit {
-    cursor: pointer;
+  cursor: pointer;
 }
-
 </style>

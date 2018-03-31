@@ -18,6 +18,14 @@ export const store = new Vuex.Store({
     },
     setLoginError (state, payload) {
       state.loginError = payload
+    },
+    setUserList (state, payload) {
+      state.users = []
+      for (var el in payload) {
+        console.log(payload[el])
+        state.users.push(payload[el])
+      }
+      console.log(state.users)
     }
   },
   actions: {
@@ -29,7 +37,10 @@ export const store = new Vuex.Store({
               id: user.uid,
               email: user.email,
               displayName: ('User' + user.uid).toLowerCase(),
-              photoURL: 'https://steamuserimages-a.akamaihd.net/ugc/619591538955923282/66905870D1AA32596AA0C51777FE6676D389A752/'
+              photoURL: 'https://steamuserimages-a.akamaihd.net/ugc/619591538955923282/66905870D1AA32596AA0C51777FE6676D389A752/',
+              occupation: 'student',
+              snippet: 'No description available',
+              description: 'Description here'
             }
             firebase.database().ref('users/' + user.uid).set(newUser)
             commit('setUser', newUser)
@@ -62,6 +73,14 @@ export const store = new Vuex.Store({
     signUserOut ({ commit }) {
       firebase.auth().signOut()
       commit('setUser', null)
+    },
+    queryDB ({ commit }, payload) {
+      return new Promise((resolve, reject) => {
+        firebase.database().ref('users').orderByChild('displayName').startAt(payload.toLowerCase()).endAt(payload.toLowerCase() + '\uf8ff').on('value', snapshot => {
+          commit('setUserList', snapshot.val())
+          resolve({g: snapshot.val(), h: payload})
+        })
+      })
     }
   },
   getters: {
@@ -83,15 +102,6 @@ export const store = new Vuex.Store({
         })
       }
     },
-    fetchUserList (state) {
-      // Payload is query text
-      return (payload) => {
-        console.log(payload + ' is our query')
-        firebase.database().ref('users').orderByChild('displayName').startAt(payload.toLowerCase()).endAt(payload.toLowerCase() + '\uf8ff').on('value', snapshot => {
-          console.log(snapshot.val())
-          return snapshot.val()
-        })
-      }
-    }
+    fetchUserList: (state) => state.users
   }
 })

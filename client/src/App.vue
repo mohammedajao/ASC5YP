@@ -8,7 +8,6 @@
 <script>
 import navbar from './components/Header.vue'
 
-
 export default {
   name: 'App',
   components: {
@@ -19,7 +18,13 @@ export default {
 
 <style>
 
+html,body {
+  height: 100%;
+  overflow-x: hidden;
+}
 #app {
+  min-height: 100%;
+  height: auto;
   transition: all 300ms ease;
   transform: translate3d(0px, 0px, 0px);
 }

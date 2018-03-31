@@ -15,109 +15,128 @@
     </div>
   </div>
 </div> -->
-<div class="result-card col-md-6 col-lg-4">
     <div class="search-box">
         <span class="user-avatar">
-            <img src="https://steamuserimages-a.akamaihd.net/ugc/619591538955923282/66905870D1AA32596AA0C51777FE6676D389A752/" alt="">
+            <img :src="this.avatar" alt="">
         </span>
         <div class="details">
             <div class="col-sm-12 date p-0">Sep 21, 2016</div>
-            <div class="col-sm-12 p-0 name">Ilya Kuvshinov D. Eliss BooterVelt</div>
-            <div class="col-sm-12 p-0 job">Illustrator</div>
+            <div class="col-sm-12 p-0 name">{{ this.name }}</div>
+            <div class="col-sm-12 p-0 job">{{ this.param3 }}</div>
             <hr class="d-none d-md-block">
-            <div class="col-sm-12 p-0 description d-none d-md-block">No descripion available</div>
+            <div class="col-sm-12 p-0 description d-none d-md-block">{{ this.snippet }}</div>
         </div>
-    </div>
 </div>
 </template>
 
 <script>
 export default {
-
+  props: {
+    avatar: {
+      type: String,
+      required: false,
+      default: 'https://steamuserimages-a.akamaihd.net/ugc/619591538955923282/66905870D1AA32596AA0C51777FE6676D389A752/'
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    param3: {
+      type: String,
+      required: true
+    },
+    snippet: {
+      type: String,
+      required: true
+    }
+  }
 }
 </script>
 
 <style>
-
 .result-card {
-    padding: 10px;
+  padding: 10px;
 }
 .search-box {
-    background-color: white;
-    cursor: pointer;
-    border: 0 solid hsla(0,0%,100%,.25);
-    border-radius: 2px;
-    box-shadow: 0 1px 5px #dcdcdc;
-    transition: all 0.2s ease-in-out;
-    padding: 15px;
-    height: auto;
-    overflow: hidden;
-    width: 100%;
+  background-color: white;
+  cursor: pointer;
+  border: 0 solid hsla(0, 0%, 100%, 0.25);
+  border-radius: 2px;
+  box-shadow: 0 1px 5px #dcdcdc;
+  transition: all 0.2s ease-in-out;
+  padding: 15px;
+  height: auto;
+  overflow: hidden;
+  width: 100%;
 }
 
-.user-avatar img{
-    max-height: 120px;
-    height: 100%;
-    float: left;
+.user-avatar img {
+  max-height: 120px;
+  height: 100%;
+  float: left;
 }
 
 .details {
-    display:inline-block;
-    padding: 0 10px;
-    width: calc(100% - 130px);
+  display: inline-block;
+  padding: 0 10px;
+  width: calc(100% - 130px);
 }
 
 .search-box .details .date {
-    color: #f4645f;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 14px;
-    vertical-align: top;
+  color: #f4645f;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 14px;
+  vertical-align: top;
 }
 
 .search-box .details .job {
-    color: rgba(150,150,150,0.9);
-    font-size: 11px;
-    font-family: "Open Sans"
+  color: rgba(150, 150, 150, 0.9);
+  font-size: 11px;
+  font-family: "Open Sans";
+}
+
+.search-box .name {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .search-box:hover {
-    box-shadow: 0 5px 5px #dcdcdc;
-    top: -5px;
+  box-shadow: 0 5px 5px #dcdcdc;
+  top: -5px;
 }
 
 .search-box .details .description {
-    font-size: 11px;
-    vertical-align: top;
-    line-height: 1;
+  font-size: 11px;
+  vertical-align: top;
+  line-height: 1;
 }
 
 .search-box hr {
-    margin: 8px 0;
+  margin: 8px 0;
 }
-@media (max-width: 380px) { 
-    .search-box, .result-card {
-        width: max-content;
-        display: inline-block;
-        
-    }
+@media (max-width: 380px) {
+  .search-box,
+  .result-card {
+    width: max-content;
+    display: inline-block;
+  }
 
-    .search-box .details .name {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        max-width: 130px;
-    }
-    .search-box .details {
-        font-size: 12px;
-        width: calc(100% - 100px);
-    }
+  .search-box .details .name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 130px;
+  }
+  .search-box .details {
+    font-size: 12px;
+    width: calc(100% - 100px);
+  }
 
-    .user-avatar img {
-        max-height: 75px;
-    }
- }
-
+  .user-avatar img {
+    max-height: 75px;
+  }
+}
 
 /* .result-box {
     margin: 10px 0;
