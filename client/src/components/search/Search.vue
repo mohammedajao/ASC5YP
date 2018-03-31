@@ -32,7 +32,6 @@ export default {
   methods: {
     userList () {
       this.$store.dispatch('queryDB', this.query)
-      console.log(this.ourList)
     }
   },
   computed: {

@@ -75,8 +75,11 @@ export const store = new Vuex.Store({
       commit('setUser', null)
     },
     queryDB ({ commit }, payload) {
+      console.log('Query initiated')
       return new Promise((resolve, reject) => {
-        firebase.database().ref('users').orderByChild('displayName').startAt(payload.toLowerCase()).endAt(payload.toLowerCase() + '\uf8ff').on('value', snapshot => {
+        var ref = firebase.database().ref('users')
+        ref.orderByKey().startAt(payload).on('value', snapshot => {
+          console.log('DB query success')
           commit('setUserList', snapshot.val())
           resolve({g: snapshot.val(), h: payload})
         })
