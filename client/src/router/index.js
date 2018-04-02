@@ -26,10 +26,10 @@ export default new Router({
       component: Search
     },
     {
-      path: '/profile',
+      path: '/profile/:id?',
       name: 'Profile',
       props: true,
-      componenet: Profile
+      component: Profile
     }
   ],
   mode: 'history'
