@@ -1,6 +1,26 @@
 <template>
   <section class="profile">
     <section class="about-me">
+      <h1 class="section-title">about me</h1>
+      <div class="about-container">
+        <img class="profile-avatar" src="https://cdnb.artstation.com/p/assets/images/images/003/966/343/large/ilya-kuvshinov-lark.jpg?1479011320" alt="">
+        <div class="basic-info">
+          <ul class="basic-info-nav">
+            <li class="basic-info-item">
+              <h4 class="basic-info-title">Full Name</h4>
+              <p class="basic-info-text">Alessia Tatulli</p>
+            </li>
+            <li class="basic-info-item">
+              <h4 class="basic-info-title">E-mail</h4>
+              <p class="basic-info-text">alessia.tatulli@gmail.com</p>
+            </li>
+            <li class="basic-info-item">
+              <h4 class="basic-info-title">Webfolio</h4>
+              <p class="basic-info-text">www.behance.net/alessiatatulli</p>
+            </li>
+          </ul>
+        </div>
+      </div>
     </section>
     <section class="education-experience">
 
@@ -108,16 +128,83 @@ export default {
 
 <style>
 
-.test {
-  height: 1000px;
-}
 .profile {
   font-family: 'Montserrat';
   text-align: center;
 }
 
+.profile section {
+  text-align: center;
+}
+
+.profile .section-title {
+  color: #817091;
+}
+
 .profile svg {
   overflow: visible;
+}
+
+.profile .about-me {
+  background-color: #F6F6F6;
+  height: auto;
+  overflow: auto; /* Collapsing Margins */
+}
+
+.profile .about-container {
+  margin-bottom: 100px;
+  display: block;
+}
+
+.profile .profile-avatar {
+  border-radius: 50%;
+  max-height: 350px;
+  display: inline-block;
+  margin-right: 50px;
+  vertical-align: middle;
+}
+
+.profile .basic-info {
+  text-align: left;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.profile .basic-info-nav, .profile .basic-info-text{
+  display: block;
+  text-align: left;
+  padding: 0;
+}
+
+.profile .basic-info-nav {
+  margin: 0;
+}
+
+.profile .basic-info-nav, .profile .basic-info-item {
+  height: auto;
+  margin-bottom: 30px;
+}
+
+.profile .basic-info-item {
+  margin: 0 auto;
+}
+
+.profile .basic-info .basic-info-nav>li {
+  display: block;
+  text-align: left;
+}
+
+.profile .basic-info-title {
+  color: #f197a3;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.profile .basic-info-text {
+  font-size: 14px;
+  color: #817091;
+  font-weight: 300;
+  opacity: 0.8;
 }
 
 .profile svg path.progress {
@@ -128,6 +215,10 @@ export default {
 .profile .section-title {
   text-transform: uppercase;
   margin-bottom: 50px;
+}
+
+.profile .basic-info-item {
+  margin-bottom: 40px;
 }
 
 .profile .skills {
