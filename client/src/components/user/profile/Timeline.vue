@@ -12,7 +12,7 @@
               <p class="container-location">New York, USA</p>
             </div>
             <div class="icon"><i class="fa fa-graduation-cap"></i></div>
-            <div class="d-none d-lg-inline-block right-line date-left date-range-indication"><span class="bubble"></span><span class="date-range"><strong>sep 2005 - jun 2010</strong></span></div>
+            <div class="right-line date-left date-range-indication"><span class="bubble"></span><span class="date-range"><strong>sep 2005 - jun 2010</strong></span></div>
           </div>
         </div>
 
@@ -38,7 +38,7 @@
               <p class="container-location">New York, USA</p>
             </div>
             <div class="icon"><i class="fa fa-graduation-cap"></i></div>
-            <div class="d-none d-lg-inline-block right-line date-left date-range-indication"><span class="bubble"></span><span class="date-range"><strong>sep 2005 - jun 2010</strong></span></div>
+            <div class="right-line date-left date-range-indication"><span class="bubble"></span><span class="date-range"><strong>sep 2005 - jun 2010</strong></span></div>
           </div>
         </div>
 
@@ -64,7 +64,7 @@
               <p class="container-location">New York, USA</p>
             </div>
             <div class="icon"><i class="fa fa-graduation-cap"></i></div>
-            <div class="d-none d-lg-inline-block right-line date-left date-range-indication"><span class="bubble"></span><span class="date-range"><strong>sep 2005 - jun 2010</strong></span></div>
+            <div class="right-line date-left date-range-indication"><span class="bubble"></span><span class="date-range"><strong>sep 2005 - jun 2010</strong></span></div>
           </div>
         </div>
 
@@ -261,7 +261,200 @@ export default {
   margin-left: 35px;
 }
 
+@media(max-width: 1000px) {
 
+  .profile .education-experience h1.section-title {
+    white-space: nowrap;
+  }
+  .profile .ee-container {
+    height: 70px;
+  }
+
+  .ee-container:first-of-type .line-container .icon::before {
+    height: 25px;
+    margin-bottom: 25px;
+  }
+
+  .ee-container:last-child .line-container .icon::after {
+    height: 35px;
+  }
+
+  .timeline .icon::after {
+    background-color: white;
+    height: 60px;
+    margin-top: 10px;
+  }
+
+  .timeline .icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .timeline .icon .fa {
+    font-size: 16px;
+    transform:translate(-20%, -25%);
+  }
+
+  .profile .education-experience .date-range {
+    border-radius: 30px;
+    margin-bottom: 10px;
+    padding: 14px 36px;
+    font-size: 12px;
+  }
+
+  .timeline .container-title {
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  .timeline .container-subtitle {
+   font-size: 11px;
+  }
+
+  .timeline .container-desc, .timeline .container-location {
+    font-size: 11px;
+  }
+}
+
+@media(max-width: 700px) {
+  .profile .education-experience h1.section-title {
+    font-size: 20px;
+  }
+  
+  .profile .ee-container {
+    height: 70px;
+  }
+
+  .ee-container:first-of-type .line-container .icon::before {
+    height: 25px;
+    margin-bottom: 25px;
+  }
+
+  .ee-container:last-child .line-container .icon::after {
+    height: 35px;
+  }
+
+  .timeline .info-left {
+    margin-left: 10px;
+  }
+
+  .timeline .info-right {
+    margin-right: 10px;
+  }
+
+  .line-container .bubble {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .line-container .date-right {
+    margin-right: 10px;
+  }
+
+  .line-container .date-left {
+    margin-left: 10px;
+  }
+
+  .timeline .icon::after {
+    background-color: white;
+    height: 60px;
+    margin-top: 10px;
+  }
+
+  .timeline .icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .timeline .icon .fa {
+    font-size: 16px;
+    transform:translate(-20%, -25%);
+  }
+
+  .profile .education-experience .date-range {
+    border-radius: 30px;
+    margin-bottom: 10px;
+    padding: 14px 36px;
+    font-size: 9px;
+  }
+
+  .timeline .container-title {
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  .timeline .container-subtitle {
+   font-size: 10px;
+  }
+
+  .timeline .container-desc, .timeline .container-location {
+    font-size: 8px;
+  }
+}
+
+@media(max-width: 500px) {
+  .profile .education-experience .date-range-indication .bubble {
+    display: none;
+  }
+
+  .profile .ee-container {
+    height: 120px;
+    margin-bottom: 0;
+  }
+
+  .profile .education-experience .date-range-indication {
+    max-width: 120px;
+  }
+
+  .profile .education-experience .date-range {
+    font-size: 7px;
+    padding: 7px 20px;
+    white-space: nowrap;
+    width: 100%;
+  }
+  .timeline .info {
+    width: 120px;
+  }
+  .timeline .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .timeline .icon .fa {
+    font-size: 9px;
+    transform:translate(-48%, -13px);
+  }
+
+  .ee-container:first-of-type .line-container .icon::before {
+    height: 25px;
+    width: 4px;
+    margin-bottom: 25px;
+  }
+
+  .ee-container:last-child .line-container .icon::after {
+    height: 35px;
+    width: 4px;
+  }
+
+  .timeline .icon::after {
+    background-color: white;
+    height: 70px;
+    width: 4px;
+    margin: auto 0px auto -2px;
+  }
+
+  .timeline .container-title {
+    font-size: 11px;
+  }
+
+  .timeline .container-subtitle {
+   font-size: 8px;
+  }
+
+  .timeline .container-desc, .timeline .container-location {
+    font-size: 8px;
+  }
+}
 
 /* .profile .ee-container {
   position: relative;
