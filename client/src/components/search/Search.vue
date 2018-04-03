@@ -4,7 +4,7 @@
           <div class="page-header">Results for: <span class="search-query">"{{ this.query }}"</span></div>
           <div class="query-results row" >
               <div class="result-card col-md-6 col-lg-4" v-for="item in this.ourList" :key="item.id">
-                <result :src="item.photoURL" :name="item.displayName" :param3="'Illustrator & Photographer'" :snippet="'No description available'"></result>
+                <result :id="item.id" :src="item.photoURL" :name="item.displayName" :param3="'Illustrator & Photographer'" :snippet="'No description available'"></result>
               </div>
           </div>
       </div>
@@ -31,6 +31,7 @@ export default {
   },
   methods: {
     userList () {
+      console.log('Dispatching')
       this.$store.dispatch('queryDB', this.query)
     }
   },

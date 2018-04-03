@@ -15,7 +15,7 @@
     </div>
   </div>
 </div> -->
-    <div class="search-box">
+    <div @click="getProfile(id)" class="search-box">
         <span class="user-avatar">
             <img :src="this.avatar" alt="">
         </span>
@@ -41,6 +41,10 @@ export default {
       type: String,
       required: true
     },
+    id: {
+      type: String,
+      required: true
+    },
     param3: {
       type: String,
       required: true
@@ -48,6 +52,12 @@ export default {
     snippet: {
       type: String,
       required: true
+    }
+  },
+  methods: {
+    getProfile (uid) {
+      console.log('Clicked')
+      this.$router.push('/profile/' + this.id)
     }
   }
 }

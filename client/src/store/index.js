@@ -14,6 +14,7 @@ export const store = new Vuex.Store({
   },
   mutations: {
     setUser (state, payload) {
+      console.log(payload)
       state.currentUser = payload
     },
     setLoginError (state, payload) {
