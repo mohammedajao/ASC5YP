@@ -1,6 +1,6 @@
 <template>
   <section class="profile">
-    <about :name="user.displayName" :email="user.email" :esc="user.desc"></about>
+    <about :uid="id" :name="user.displayName" :photo="user.photoURL" :email="user.email" :esc="user.desc"></about>
     <timeline></timeline>
     <skills></skills>
   </section>

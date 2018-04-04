@@ -2,7 +2,8 @@
    <section class="about-me">
       <h1 class="section-title">about me</h1>
       <div class="about-container">
-        <img class="profile-avatar" src="https://cdnb.artstation.com/p/assets/images/images/003/966/343/large/ilya-kuvshinov-lark.jpg?1479011320" alt="">
+        <!-- https://cdnb.artstation.com/p/assets/images/images/003/966/343/large/ilya-kuvshinov-lark.jpg?1479011320 -->
+        <img class="profile-avatar" :src="photo" alt="">
         <div class="basic-info">
           <ul class="basic-info-nav">
             <li class="basic-info-item">
@@ -13,16 +14,15 @@
               <h4 class="basic-info-title">E-mail</h4>
               <p class="basic-info-text">{{ this.email }}</p>
             </li>
-            <li v-if="this.webfolio" class="basic-info-item">
+            <li v-if="webfolio" class="basic-info-item">
               <h4 class="basic-info-title">Webfolio</h4>
-              <p class="basic-info-text">www.github.com/johndoe</p>
+              <p class="basic-info-text">{{ this.webfolio }}</p>
             </li>
           </ul>
         </div>
-        <div v-html="this.desc" class="full-desc d-none d-md-block">
-          
-        </div>
+        <div v-html="this.desc" class="full-desc d-none d-md-block"></div>
       </div>
+      <div v-if="user && user.uid === uid" @click="sendToEditor()" class="btn-edit mb-5">Edit Profile</div>
     </section>
 </template>
 
@@ -31,6 +31,10 @@ export default {
   props: {
     name: {
       type: String
+    },
+    uid: {
+      type: String,
+      required: true
     },
     email: {
       type: String
@@ -42,10 +46,28 @@ export default {
     desc: {
       type: String,
       required: false
+    },
+    photo: {
+      type: String
     }
   },
   data () {
-    return {}
+    return {
+      
+    }
+  },
+  methods: {
+    sendToEditor () {
+      this.$router.push('/editor')
+    }
+  },
+  computed: {
+    user () {
+      return this.$store.getters.currentUserData
+    }
+  },
+  created () {
+    console.log(this.user)
   }
 }
 </script>
@@ -53,6 +75,21 @@ export default {
 <style>
 .profile svg {
   overflow: visible;
+}
+
+.profile .btn-edit {
+  background-color: rgb(111, 216, 111);
+  color: white;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 20px 30px;
+  display: inline-block;
+  transition: .2s ease-in-out;
+}
+
+.profile .btn-edit:hover {
+  box-shadow: 0 5px 5px #dcdcdc;
+  top: -10px;
 }
 
 .profile .about-me {
@@ -78,6 +115,10 @@ export default {
 .profile .basic-info {
   padding-top: 30px;
   text-align: left;
+  max-width: 210px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   display: inline-block;
   vertical-align: middle;
 }

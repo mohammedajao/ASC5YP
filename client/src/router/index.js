@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import Register from '@/components/Register'
 import Search from '@/components/search/Search'
 import Profile from '@/components/user/Profile'
+import Editor from '@/components/user/Editor'
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ export default new Router({
       name: 'Profile',
       props: true,
       component: Profile
+    },
+    {
+      path: '/editor',
+      name: 'Editor',
+      component: Editor
     }
   ],
   mode: 'history'

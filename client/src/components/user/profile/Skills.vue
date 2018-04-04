@@ -90,10 +90,11 @@ export default {
     })
   },
   created () {
-    document.addEventListener('scroll', (e) => {
-      this.handleScroll()
-    })
+    document.addEventListener('scroll', this.handleScroll)
   },
+  destroyed () {
+    document.removeEventListener('scroll', this.handleScroll)
+  }
   
 }
 </script>
