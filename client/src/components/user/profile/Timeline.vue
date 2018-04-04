@@ -1,9 +1,60 @@
 <template>
   <section class="education-experience">
       <h1 class="section-title">education - experience</h1>
-      <div class="timeline">
+      <div v-if="!timeline" class="mb-5" style="color: white; text-align: center;"><em>Nothing here!</em></div>
+      <div class="timeline" v-if="timeline">
         <!-- whod = we have our date ||| r and l are right and left -->
-        <div class="ee-container whodr">
+
+        <div class="div ee-container" v-for="(item, index) in timeline" :key="index">
+          <div class="line-container">
+            <div class="info info-right" v-if="index % 2 !== 0">
+              <h3 class="container-title">{{ item.title }}</h3>
+              <p class="container-subtitle">{{ item.subtitle }}</p>
+              <p class="container-desc">{{ item.desc }}</p>
+              <p class="container-location">{{ item.location }}</p>
+            </div>
+            <div v-if="index % 2 !== 0" class="icon"><i class="fa fa-graduation-cap"></i></div>
+            <div v-if="index % 2 !== 0" class="right-line date-left date-range-indication"><span class="bubble"></span><span class="date-range"><strong>{{ item.range }}</strong></span></div>
+
+
+            <div v-if="index % 2 === 0" class="left-line date-right date-range-indication"><span class="date-range"><strong>{{ item.range }}</strong></span><span class="bubble"></span></div>
+            <div v-if="index % 2 === 0" class="icon"><i class="fa fa-graduation-cap"></i></div>
+            <div v-if="index % 2 === 0" class="info info-left">
+              <h3 class="container-title">{{ item.title }}</h3>
+              <p class="container-subtitle">{{ item.subtitle }}</p>
+              <p class="container-desc">{{ item.desc }}</p>
+              <p class="container-location">{{ item.location }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div v-if="index % 2 !== 0" :id="index" class="ee-container whodr">
+          <div class="line-container">
+            <div class="info info-right">
+              <h3 class="container-title">{{ item.title }}</h3>
+              <p class="container-subtitle">{{ item.subtitle }}</p>
+              <p class="container-desc">{{ item.desc }}</p>
+              <p class="container-location">{{ item.location }}</p>
+            </div>
+            <div class="icon"><i class="fa fa-graduation-cap"></i></div>
+            <div class="right-line date-left date-range-indication"><span class="bubble"></span><span class="date-range"><strong>{{ item.range }}</strong></span></div>
+          </div>
+        </div>
+
+        <div v-if="index % 2 === 0" class="ee-container whodl">
+          <div class="line-container">
+            <div class="left-line date-right date-range-indication"><span class="date-range"><strong>{{ item.range }}</strong></span><span class="bubble"></span></div>
+            <div class="icon"><i class="fa fa-graduation-cap"></i></div>
+            <div class="info info-left">
+              <h3 class="container-title">{{ item.title }}</h3>
+              <p class="container-subtitle">{{ item.subtitle }}</p>
+              <p class="container-desc">{{ item.desc }}</p>
+              <p class="container-location">{{ item.location }}</p>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- <div class="ee-container whodr">
           <div class="line-container">
             <div class="info info-right">
               <h3 class="container-title">highschool diploma</h3>
@@ -48,45 +99,69 @@
             <div class="icon"><i class="fa fa-graduation-cap"></i></div>
             <div class="info info-left">
               <h3 class="container-title">Bachelor in Computer Science</h3>
-              <p class="container-subtitle">Colubmia Engineering Experience</p>
-              <p class="container-desc">King's College, 110/110(manga cum laude)</p>
-              <p class="container-location">New York, USA</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="ee-container whodr">
-          <div class="line-container">
-            <div class="info info-right">
-              <h3 class="container-title">highschool diploma</h3>
-              <p class="container-subtitle"></p>
-              <p class="container-desc">Bronx Highschool of Science</p>
-              <p class="container-location">New York, USA</p>
-            </div>
-            <div class="icon"><i class="fa fa-graduation-cap"></i></div>
-            <div class="right-line date-left date-range-indication"><span class="bubble"></span><span class="date-range"><strong>sep 2005 - jun 2010</strong></span></div>
-          </div>
-        </div>
-
-        <div class="ee-container whodl">
-          <div class="line-container">
-            <div class="left-line date-right date-range-indication"><span class="date-range"><strong>oct 2010 - in progress</strong></span><span class="bubble"></span></div>
-            <div class="icon"><i class="fa fa-graduation-cap"></i></div>
-            <div class="info info-left">
-              <h3 class="container-title">Bachelor in Computer Science</h3>
               <p class="container-subtitle"></p>
               <p class="container-desc">King's College, 110/110(manga cum laude)</p>
               <p class="container-location">New York, USA</p>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </section>
 </template>
 
 <script>
 export default {
-
+  props: {
+    timeline: {
+      type: Array,
+      required: false
+    }
+  },
+  data () {
+    return {
+      // timeline: [
+      //   {
+      //     title: 'highschool diploma',
+      //     range: 'sep 2005 - jun 2010',
+      //     location: 'New York, USA'
+      //   },
+      //   {
+      //     title: 'Bachelor in computer science',
+      //     subtitle: 'columbia engineering experience',
+      //     desc: 'King\'s Colleg, 110/110(magna cum laude)',
+      //     location: 'New York, USA',
+      //     range: 'oct 2010 - in progress'
+      //   },
+      //   {
+      //     title: 'highschool diploma',
+      //     range: 'sep 2005 - jun 2010',
+      //     location: 'New York, USA'
+      //   },
+      //   {
+      //     title: 'Bachelor in computer science',
+      //     subtitle: 'columbia engineering experience',
+      //     desc: 'King\'s Colleg, 110/110(magna cum laude)',
+      //     location: 'New York, USA',
+      //     range: 'oct 2010 - in progress'
+      //   },
+      //   {
+      //     title: 'highschool diploma',
+      //     range: 'sep 2005 - jun 2010',
+      //     location: 'New York, USA'
+      //   },
+      //   {
+      //     title: 'Bachelor in computer science',
+      //     subtitle: 'columbia engineering experience',
+      //     desc: 'King\'s Colleg, 110/110(magna cum laude)',
+      //     location: 'New York, USA',
+      //     range: 'oct 2010 - in progress'
+      //   }
+      // ]
+    }
+  },
+  created () {
+    // Organize timeline
+  }
 }
 </script>
 

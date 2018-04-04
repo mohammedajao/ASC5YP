@@ -7,26 +7,20 @@
           <ul class="basic-info-nav">
             <li class="basic-info-item">
               <h4 class="basic-info-title">Full Name</h4>
-              <p class="basic-info-text">John Doe</p>
+              <p class="basic-info-text">{{ this.name }}</p>
             </li>
             <li class="basic-info-item">
               <h4 class="basic-info-title">E-mail</h4>
-              <p class="basic-info-text">john.doe@gmail.com</p>
+              <p class="basic-info-text">{{ this.email }}</p>
             </li>
-            <li class="basic-info-item">
+            <li v-if="this.webfolio" class="basic-info-item">
               <h4 class="basic-info-title">Webfolio</h4>
               <p class="basic-info-text">www.github.com/johndoe</p>
             </li>
           </ul>
         </div>
-        <div class="full-desc d-none d-md-block">
-          Hi, I'm <strong>John Doe</strong>. I'm a student currently attending
-          <strong>Rodgers Highschool</strong>. I'm a 14 year old who loves to
-          express themselves through acting, music, and dance.
-          I focus on making the best out of my characters by
-          researching their past and immersing myself into their
-          experiences. This allows me to give a personal and unique
-          touch on them.
+        <div v-html="this.desc" class="full-desc d-none d-md-block">
+          
         </div>
       </div>
     </section>
@@ -34,6 +28,22 @@
 
 <script>
 export default {
+  props: {
+    name: {
+      type: String
+    },
+    email: {
+      type: String
+    },
+    webfolio: {
+      type: String,
+      required: false
+    },
+    desc: {
+      type: String,
+      required: false
+    }
+  },
   data () {
     return {}
   }

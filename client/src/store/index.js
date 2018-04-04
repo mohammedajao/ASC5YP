@@ -93,16 +93,16 @@ export const store = new Vuex.Store({
         return jobA.createDate > jobB.createDate
       })
     },
-    currentUserData (state) {
-      return state.currentUser
-    },
+    currentUserData: (state) => state.currentUser,
     loginError (state) {
       return state.loginError
     },
     fetchUser (state) {
       return (uid) => {
-        return firebase.database().ref('users/' + uid).once('value').then(snapshot => {
-          return snapshot
+        return new Promise((resolve, reject) => {
+          return firebase.database().ref('users/' + uid).once('value').then(snapshot => {
+            resolve(snapshot.val())
+          })
         })
       }
     },

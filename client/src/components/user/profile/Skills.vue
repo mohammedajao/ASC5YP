@@ -2,6 +2,7 @@
   <section id='profile-skills' class="skills">
       <div class="profile-section-header">
         <h1 class="section-title">skills</h1>
+        <div v-if="skills.length == 0" class="mb-5"><em>No skills have been listed.</em></div>
         <div class="skills-container">
           <div class="row">
             <div class="skill" v-for="(item, index) in this.skills" :key="index">
@@ -25,32 +26,40 @@
 
 <script>
 export default {
+  props: {
+    skills: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    }
+  },
   data () {
     return {
       scrolled: false,
-      tweenList: [],
-      skills: [
-        {
-          title: 'Illustrator',
-          desc: 'Illustration, Graphic Design, Branding, User Interface, Icon Design',
-          rating: 0.9 // Out of 296
-        },
-        {
-          title: 'Photoshop',
-          desc: 'Illustration, Photomanipulation, Digital Painting, User Interface',
-          rating: 0.85
-        },
-        {
-          title: 'Indesign',
-          desc: 'Corporate Identity, Editiorial Layout, Advertising Layout',
-          rating: 0.75
-        },
-        {
-          title: 'Indesign',
-          desc: 'Corporate Identity, Editiorial Layout, Advertising Layout',
-          rating: 0.75
-        }
-      ]
+      tweenList: []//,
+      // skills: [
+      //   {
+      //     title: 'Illustrator',
+      //     desc: 'Illustration, Graphic Design, Branding, User Interface, Icon Design',
+      //     rating: 0.9 // Out of 296
+      //   },
+      //   {
+      //     title: 'Photoshop',
+      //     desc: 'Illustration, Photomanipulation, Digital Painting, User Interface',
+      //     rating: 0.85
+      //   },
+      //   {
+      //     title: 'Indesign',
+      //     desc: 'Corporate Identity, Editiorial Layout, Advertising Layout',
+      //     rating: 0.75
+      //   },
+      //   {
+      //     title: 'Indesign',
+      //     desc: 'Corporate Identity, Editiorial Layout, Advertising Layout',
+      //     rating: 0.75
+      //   }
+      // ]
     }
   },
   methods: {

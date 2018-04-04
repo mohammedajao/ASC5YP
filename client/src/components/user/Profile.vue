@@ -1,6 +1,6 @@
 <template>
   <section class="profile">
-    <about></about>
+    <about :name="user.displayName" :email="user.email" :esc="user.desc"></about>
     <timeline></timeline>
     <skills></skills>
   </section>
@@ -13,16 +13,28 @@ import Timeline from './profile/Timeline'
 
 
 export default {
+  props: {
+    id: {
+      type: String,
+      required: true
+    }
+  },
   data () {
-    return {}
+    return {
+      user: {}
+    }
   },
   methods: {
     
   },
   computed: {
-    user () {
-      return true
-    }
+ 
+  },
+  created () {
+    this.$store.getters.fetchUser(this.id).then(result => {
+      console.log(result)
+      this.user = result
+    })
   },
   components: {
     About,

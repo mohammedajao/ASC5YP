@@ -26,7 +26,7 @@ export default new Router({
       component: Search
     },
     {
-      path: '/profile/:id?',
+      path: '/profile/:id',
       name: 'Profile',
       props: true,
       component: Profile
