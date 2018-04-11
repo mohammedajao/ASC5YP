@@ -3,6 +3,21 @@
     <about :uid="id" :name="user.displayName" :photo="user.photoURL" :email="user.email" :esc="user.desc"></about>
     <timeline></timeline>
     <skills></skills>
+    <section class="profile-rating pb-5">
+      <h1 class="section-title">Rate Me!</h1>
+      <div class="ratings">
+        <i @mouseover="hover($event)" @mouseleave="leave($event)" @mousedown="rated = !rated" class="fa fa-star"></i>
+        <i @mouseover="hover($event)" @mouseleave="leave($event)" @mousedown="rated = !rated" class="fa fa-star"></i>
+        <i @mouseover="hover($event)" @mouseleave="leave($event)" @mousedown="rated = !rated" class="fa fa-star"></i>
+        <i @mouseover="hover($event)" @mouseleave="leave($event)" @mousedown="rated = !rated" class="fa fa-star"></i>
+        <i @mouseover="hover($event)" @mouseleave="leave($event)" @mousedown="rated = !rated" class="fa fa-star"></i>
+        <i @mouseover="hover($event)" @mouseleave="leave($event)" @mousedown="rated = !rated" class="fa fa-star"></i>
+        <i @mouseover="hover($event)" @mouseleave="leave($event)" @mousedown="rated = !rated" class="fa fa-star"></i>
+        <i @mouseover="hover($event)" @mouseleave="leave($event)" @mousedown="rated = !rated" class="fa fa-star"></i>
+        <i @mouseover="hover($event)" @mouseleave="leave($event)" @mousedown="rated = !rated" class="fa fa-star"></i>
+        <i @mouseover="hover($event)" @mouseleave="leave($event)" @mousedown="rated = !rated" class="fa fa-star"></i>
+      </div>
+    </section>
   </section>
 </template>
 
@@ -21,11 +36,31 @@ export default {
   },
   data () {
     return {
-      user: {}
+      user: {},
+      rated: false
     }
   },
   methods: {
-    
+    hover (event) {
+      console.log(event)
+      // $('.fa-star').hover(() => {
+      //   console.log('works')
+      //   console.log($(this.$el))
+      //   $('.fa-star').prevAll().css('color', 'yellow')
+      // })
+      if(!this.rated) {
+        $(event.target).css('color', '#e3c0c0')
+        $(event.target).prevAll().css('color', '#e3c0c0')
+        $(event.target).nextAll().css('color', '#5a5f75')
+      }
+    },
+    leave (event) {
+      if (!this.rated) {
+        $(event.target).css('color', '#5a5f75')
+        $(event.target).prevAll().css('color', '#5a5f75')
+        $(event.target).nextAll().css('color', '#5a5f75')
+      }
+    }
   },
   computed: {
  
@@ -35,6 +70,7 @@ export default {
       console.log(result)
       this.user = result
     })
+
   },
   components: {
     About,
@@ -61,5 +97,8 @@ export default {
 }
 
 
+.profile .fa-star {
+  cursor: pointer;
+}
 
 </style>

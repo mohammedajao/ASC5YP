@@ -26,8 +26,9 @@
      </ul>
      <ul v-if="currentUser !== null" class="d-none d-lg-block main-nav navbar-nav">
          <li class="nav-item"><router-link  to="/" class="nav-link">Home</router-link></li>
-         <li class="nav-item"><router-link to="/" class="nav-link">News</router-link></li>
+         <li class="nav-item"><router-link to="/news" class="nav-link">News</router-link></li>
          <li class="nav-item"><router-link :to="'/profile/' + this.currentUser.uid" class="nav-link"><i class="fa fa-user"></i>&nbsp;Profile</router-link></li>
+         <li class="nav-item"><router-link to="/leaderboard" class="nav-link">Rankings</router-link></li>
          <li @click="signOut()" class="nav-item"><router-link to="/"  class="nav-link"><i  class="fa fa-sign-out"></i>&nbsp;Logout</router-link></li>
      </ul>
      <!-- Slide Menu -->
@@ -41,8 +42,9 @@
          </ul>
          <ul v-if="currentUser !== null" class="slide-main-nav nav">
             <li class="nav-item"><router-link to="/" class="nav-link">Home</router-link></li>
-            <li class="nav-item"><router-link to="/" class="nav-link">News</router-link></li>
+            <li class="nav-item"><router-link to="/news" class="nav-link">News</router-link></li>
             <li class="nav-item"><router-link :to="'/profile/' + this.currentUser.uid" class="nav-link"><i class="fa fa-user"></i>&nbsp;Profile</router-link></li>
+            <li class="nav-item"><router-link to="/leaderboard" class="nav-link">Rankings</router-link></li>
             <li @click="signOut()" class="nav-item"><router-link to="/" class="nav-link"><i  class="fa fa-sign-out"></i>&nbsp;Logout</router-link></li>
          </ul>
      </nav>

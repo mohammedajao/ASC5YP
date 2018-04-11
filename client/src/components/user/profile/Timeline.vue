@@ -54,7 +54,7 @@
           </div>
         </div> -->
 
-        <!-- <div class="ee-container whodr">
+        <div class="ee-container whodr">
           <div class="line-container">
             <div class="info info-right">
               <h3 class="container-title">highschool diploma</h3>
@@ -104,59 +104,59 @@
               <p class="container-location">New York, USA</p>
             </div>
           </div>
-        </div> -->
+        </div>
       </div>
     </section>
 </template>
 
 <script>
 export default {
-  props: {
-    timeline: {
-      type: Array,
-      required: false
-    }
-  },
+  // props: {
+  //   timeline: {
+  //     type: Array,
+  //     required: false
+  //   }
+  // },
   data () {
     return {
-      // timeline: [
-      //   {
-      //     title: 'highschool diploma',
-      //     range: 'sep 2005 - jun 2010',
-      //     location: 'New York, USA'
-      //   },
-      //   {
-      //     title: 'Bachelor in computer science',
-      //     subtitle: 'columbia engineering experience',
-      //     desc: 'King\'s Colleg, 110/110(magna cum laude)',
-      //     location: 'New York, USA',
-      //     range: 'oct 2010 - in progress'
-      //   },
-      //   {
-      //     title: 'highschool diploma',
-      //     range: 'sep 2005 - jun 2010',
-      //     location: 'New York, USA'
-      //   },
-      //   {
-      //     title: 'Bachelor in computer science',
-      //     subtitle: 'columbia engineering experience',
-      //     desc: 'King\'s Colleg, 110/110(magna cum laude)',
-      //     location: 'New York, USA',
-      //     range: 'oct 2010 - in progress'
-      //   },
-      //   {
-      //     title: 'highschool diploma',
-      //     range: 'sep 2005 - jun 2010',
-      //     location: 'New York, USA'
-      //   },
-      //   {
-      //     title: 'Bachelor in computer science',
-      //     subtitle: 'columbia engineering experience',
-      //     desc: 'King\'s Colleg, 110/110(magna cum laude)',
-      //     location: 'New York, USA',
-      //     range: 'oct 2010 - in progress'
-      //   }
-      // ]
+      timeline: [
+        {
+          title: 'highschool diploma',
+          range: 'sep 2005 - jun 2010',
+          location: 'New York, USA'
+        },
+        {
+          title: 'Bachelor in computer science',
+          subtitle: 'columbia engineering experience',
+          desc: 'King\'s Colleg, 110/110(magna cum laude)',
+          location: 'New York, USA',
+          range: 'oct 2010 - in progress'
+        },
+        {
+          title: 'highschool diploma',
+          range: 'sep 2005 - jun 2010',
+          location: 'New York, USA'
+        },
+        {
+          title: 'Bachelor in computer science',
+          subtitle: 'columbia engineering experience',
+          desc: 'King\'s Colleg, 110/110(magna cum laude)',
+          location: 'New York, USA',
+          range: 'oct 2010 - in progress'
+        },
+        {
+          title: 'highschool diploma',
+          range: 'sep 2005 - jun 2010',
+          location: 'New York, USA'
+        },
+        {
+          title: 'Bachelor in computer science',
+          subtitle: 'columbia engineering experience',
+          desc: 'King\'s Colleg, 110/110(magna cum laude)',
+          location: 'New York, USA',
+          range: 'oct 2010 - in progress'
+        }
+      ]
     }
   },
   created () {

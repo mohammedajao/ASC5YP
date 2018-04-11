@@ -5,6 +5,10 @@ import Register from '@/components/Register'
 import Search from '@/components/search/Search'
 import Profile from '@/components/user/Profile'
 import Editor from '@/components/user/Editor'
+import Job from '@/components/job/Job'
+import News from '@/components/news/NewsLib'
+import Article from '@/components/news/News'
+import Leaderboard from '@/components/leaderboard/Leaderboard'
 
 Vue.use(Router)
 
@@ -36,6 +40,26 @@ export default new Router({
       path: '/editor',
       name: 'Editor',
       component: Editor
+    },
+    {
+      path: '/job/:id?',
+      name: 'Job',
+      component: Job
+    },
+    {
+      path: '/news',
+      name: 'News',
+      component: News
+    },
+    {
+      path: '/news/:id?',
+      name: 'Article',
+      component: Article
+    },
+    {
+      path: '/leaderboard',
+      name: 'Leaderboard',
+      component: Leaderboard
     }
   ],
   mode: 'history'

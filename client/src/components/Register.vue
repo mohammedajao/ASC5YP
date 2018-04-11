@@ -9,7 +9,17 @@
         <input id="register-email" v-model="username" type="text" placeholder="EMAIL ADDRESS" spellcheck="false"><br>
         <input id="register-password" v-model="password" type="password" placeholder="PASSWORD" spellcheck="false"><br>
         <input id="register-conf-password" v-model="confirmPassword" type="password" placeholder="CONFIRM PASSWORD" spellcheck="false"><br>
-        <div class="btn-register" @click="registerUser()">Register</div>
+        <div class="form-check form-check-inline mb-3 mt-3">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" v-model="userType" value="student">Student
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" v-model="userType" value="organizer">Organizer
+          </label>
+        </div>
+        <div class="btn-register mb-3" @click="registerUser()">Register</div>
       </div>
       <div class="warn-section">
 
@@ -26,6 +36,7 @@ export default {
       username: '',
       password: '',
       confirmPassword: '',
+      userType: '',
       emailWarning: false,
       passWarning: false,
       passWarningText: 'Password must have at least one number, one lowercase letter, one uppercase letter, and 8 characters',
@@ -43,11 +54,13 @@ export default {
       if (
         this.checkPassword(this.password) === this.password &&
         this.checkEmailUsername(this.username) === this.username &&
-        this.password === this.confirmPassword
+        this.password === this.confirmPassword &&
+        this.userType.length > 0
       ) {
         this.$store.dispatch('registerUserWithEmailAndPassword', {
           email: this.username,
-          password: this.password
+          password: this.password,
+          userType: this.userType
         })
         this.$router.push('/')
       }
@@ -107,6 +120,11 @@ export default {
   computed: {
     currentUser () {
       return this.$store.getters.currentUserData
+    }
+  },
+  watch: {
+    userType () {
+      console.log(this.userType)
     }
   }
 }

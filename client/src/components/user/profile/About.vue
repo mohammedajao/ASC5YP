@@ -41,7 +41,8 @@ export default {
     },
     webfolio: {
       type: String,
-      required: false
+      required: false,
+      default: 'www.asc5yp.com/'
     },
     desc: {
       type: String,

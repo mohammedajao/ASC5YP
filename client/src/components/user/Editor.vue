@@ -87,13 +87,13 @@
       <div class="form-group row">
         <label for="example-month-input" class="col-2 col-form-label">From</label>
         <div class="col-10">
-          <input class="form-control" type="month" value="2011-08">
+          <input class="form-control" v-model="dateFrom" type="month" value="2011-08">
         </div>
       </div>
       <div class="form-group row">
         <label for="example-month-input" class="col-2 col-form-label">To</label>
         <div class="col-10">
-          <input class="form-control" type="month" value="2011-08">
+          <input v-model="dateTo" class="form-control" type="month" value="2011-08">
         </div>
         <p class="timeline-note col-12">Note: Anything during or after the current year or month will be marked as "IN PROGRESS"</p>
       </div>
@@ -128,7 +128,9 @@ export default {
       eventSub: '',
       eventDesc: '',
       eventLoc: '',
-      eventRange: '',
+      dateFrom: '',
+      dateTo: '',
+      eventRange: '', // One date input is formatted as 2018-04
       skills: [],
       timeline: []
     }
@@ -143,6 +145,17 @@ export default {
         title: this.skillTitle,
         desc: this.skillDesc
       })
+    },
+    createRange () {
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      if(dateFrom.length > 0 && dateTo.length > 0) {
+        this.eventRange = dateTo.splice(0, 4)
+      }
+    }
+  },
+  watch: {
+    test () {
+      console.log(this.test)
     }
   }
 }
