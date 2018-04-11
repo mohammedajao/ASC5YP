@@ -108,6 +108,7 @@ export default {
 
 .search-box .name {
   overflow: hidden;
+  text-transform: capitalize;
   text-overflow: ellipsis;
 }
 
@@ -134,6 +135,7 @@ export default {
 
   .search-box .details .name {
     text-overflow: ellipsis;
+    text-transform: capitalize;
     white-space: nowrap;
     overflow: hidden;
     max-width: 130px;
